@@ -30,6 +30,7 @@
 // Launch Debugger windows
 #pragma DebuggerWindows("vexCompetitionControl")
 #pragma DebuggerWindows("debugStream")
+//#pragma DebuggerWindows("vexLCD")
 
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
@@ -45,6 +46,9 @@
 
 //Debug include
 #include "Debug.h"
+
+//Util include
+#include "Util.h"
 
 //Set debug variable - CHANGE BEFORE COMPETITION
 #define AT_COMPETITION false
@@ -93,6 +97,9 @@ void pre_auton()
 task autonomous()
 {
 	writeDebugStreamLine("(%s): Entering autonomous task ",__FILE__);
+	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__);
+	stopAllUserCreatedTasks();
+	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__);
 	if(SensorValue[dgtl1]){
 		writeDebugStreamLine("(%s): Running doProgrammerSkills routine",__FILE__);
 		doProgrammerSkills();
@@ -118,6 +125,9 @@ task autonomous()
 task usercontrol()
 {
 	writeDebugStreamLine("(%s): Entering usercontrol task ",__FILE__);
+	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__);
+	stopAllUserCreatedTasks();
+	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__);
 	if(DEBUG&&!AT_COMPETITION){
 		writeDebugStreamLine("(%s): Running doDebug routine ",__FILE__);
 		doDebug();

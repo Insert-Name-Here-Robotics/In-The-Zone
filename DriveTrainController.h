@@ -20,5 +20,6 @@ task driveTrainController(){
 	while(true){
 		motor[port1] = vexRT[Ch3] + vexRT[Ch4];
 		motor[port10] = -1*(vexRT[Ch3] - vexRT[Ch4]);
+		sleep(25);
 	}
 }

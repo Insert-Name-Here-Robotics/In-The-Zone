@@ -31,5 +31,6 @@ task rackController(){
 			motor[port2] = 0;
 			motor[port9] = 0;
 		}
+		sleep(25);
 	}
 }

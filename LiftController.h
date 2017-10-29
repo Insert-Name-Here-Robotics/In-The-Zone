@@ -39,5 +39,6 @@ task liftController(){
 			motor[port6] = 0;
 			motor[port7] = 0;
 		}
+		sleep(25);
 	}
 }
