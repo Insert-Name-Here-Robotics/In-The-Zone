@@ -19,7 +19,7 @@ const int rackPowerUp = 64;
 const int rackPowerDown = -64;
 
 task rackController(){
-	writeDebugStreamLine("(%s): Entering rackController task ",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering rackController task ",__FILE__,__LINE__);
 	while(true){
 		if(vexRT[Btn7U]){
 			motor[port2] = -1 * rackPowerUp;

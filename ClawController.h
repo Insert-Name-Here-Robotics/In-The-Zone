@@ -19,7 +19,7 @@ const int clawPowerOpen = 64;
 const int clawPowerClosed = -30;
 
 task clawController(){
-	writeDebugStreamLine("(%s): Entering clawController task ",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering clawController task ",__FILE__,__LINE__);
 	while(true){
 		if(vexRT[Btn6U]){
 			motor[port8] = clawPowerOpen;

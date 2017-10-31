@@ -24,13 +24,13 @@
 
 
 void doDriverControl(){
-	writeDebugStreamLine("(%s): Entering doDriverControl routine",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering doDriverControl routine",__FILE__,__LINE__);
 	startTask(driveTrainController);
 	startTask(liftController);
 	startTask(clawController);
 	startTask(rackController);
 	startTask(swivelPidController);
-	writeDebugStreamLine("(%s): Finishing up doDriverControl routine, entering infinite sleep",__FILE__);
+	writeDebugStreamLine("(%s,%d): Finishing up doDriverControl routine, entering infinite sleep",__FILE__,__LINE__);
 	while(true){
 		sleep(100);
 	}

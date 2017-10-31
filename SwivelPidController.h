@@ -25,7 +25,7 @@
 bool runMotorSwivelPID = true;
 
 float pidSwivel_Kp = 0.7;
-float pidSwivel_Kjoystick = 0.5;
+//float pidSwivel_Kjoystick = 0.5;
 
 int max_drive_value = 100;
 int min_drive_value = -50;
@@ -36,7 +36,7 @@ int pidSwivelError;
 float pidSwivelDrive;
 
 task swivelPidController(){
-	writeDebugStreamLine("(%s): Entering swivelPidController task ",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering swivelPidController task ",__FILE__,__LINE__);
 
 
 	pidSwivelRequestedValue = 2000;

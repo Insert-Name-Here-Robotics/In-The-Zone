@@ -42,7 +42,7 @@
 #include "Autonomous.h"
 
 //Programmer Skills include
-#include "ProgrammerSkills.h"
+#include "ProgrammerSkills.h";
 
 //Debug include
 #include "Debug.h"
@@ -52,7 +52,7 @@
 
 //Set debug variable - CHANGE BEFORE COMPETITION
 #define AT_COMPETITION false
-const bool DEBUG = false;
+const bool DEBUG = true;
 
 
 /*---------------------------------------------------------------------------*/
@@ -68,7 +68,7 @@ const bool DEBUG = false;
 void pre_auton()
 {
 	clearDebugStream();
-	writeDebugStreamLine("(%s): Entering pre_auton task ",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering pre_auton task ",__FILE__,__LINE__);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -81,7 +81,7 @@ void pre_auton()
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-	writeDebugStreamLine("(%s): Exiting pre_auton task ",__FILE__);
+	writeDebugStreamLine("(%s): Exiting pre_auton task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -96,20 +96,20 @@ void pre_auton()
 
 task autonomous()
 {
-	writeDebugStreamLine("(%s): Entering autonomous task ",__FILE__);
-	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__);
+	writeDebugStreamLine("(%s): Entering autonomous task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__);
+	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	if(SensorValue[dgtl1]){
-		writeDebugStreamLine("(%s): Running doProgrammerSkills routine",__FILE__);
+		writeDebugStreamLine("(%s): Running doProgrammerSkills routine",__FILE__,__LINE__);
 		doProgrammerSkills();
-		writeDebugStreamLine("(%s): Done running doProgrammerSkills routine",__FILE__);
+		writeDebugStreamLine("(%s): Done running doProgrammerSkills routine",__FILE__,__LINE__);
 	}else{
-		writeDebugStreamLine("(%s): Running doAutonomous routine",__FILE__);
+		writeDebugStreamLine("(%s): Running doAutonomous routine",__FILE__,__LINE__);
 		doAutonomous();
-		writeDebugStreamLine("(%s): Done running doAutonomous routine",__FILE__);
+		writeDebugStreamLine("(%s): Done running doAutonomous routine",__FILE__,__LINE__);
 	}
-	writeDebugStreamLine("(%s): Exiting autonomous task ",__FILE__);
+	writeDebugStreamLine("(%s): Exiting autonomous task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -124,18 +124,18 @@ task autonomous()
 
 task usercontrol()
 {
-	writeDebugStreamLine("(%s): Entering usercontrol task ",__FILE__);
-	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__);
+	writeDebugStreamLine("(%s): Entering usercontrol task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__);
+	writeDebugStreamLine("(%s): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	if(DEBUG&&!AT_COMPETITION){
-		writeDebugStreamLine("(%s): Running doDebug routine ",__FILE__);
+		writeDebugStreamLine("(%s): Running doDebug routine ",__FILE__,__LINE__);
 		doDebug();
-		writeDebugStreamLine("(%s): Done running doDebug routine ",__FILE__);
+		writeDebugStreamLine("(%s): Done running doDebug routine ",__FILE__,__LINE__);
 	}else{
-		writeDebugStreamLine("(%s): Running doDriverControl routine ",__FILE__);
+		writeDebugStreamLine("(%s): Running doDriverControl routine ",__FILE__,__LINE__);
 		doDriverControl();
-		writeDebugStreamLine("(%s): Done running doDriverControl routine ",__FILE__);
+		writeDebugStreamLine("(%s): Done running doDriverControl routine ",__FILE__,__LINE__);
 	}
-	writeDebugStreamLine("(%s): Exiting usercontrol task ",__FILE__);
+	writeDebugStreamLine("(%s): Exiting usercontrol task ",__FILE__,__LINE__);
 }

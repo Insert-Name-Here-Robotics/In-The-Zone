@@ -24,11 +24,11 @@
 //*/
 
 void stopAllUserCreatedTasks(){
-	writeDebugStreamLine("(%s): Entering stopAllUserCreatedTasks routine",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering stopAllUserCreatedTasks routine",__FILE__,__LINE__);
 	stopTask(driveTrainController);
 	stopTask(liftController);
 	stopTask(clawController);
 	stopTask(rackController);
 	stopTask(swivelPidController);
-	writeDebugStreamLine("(%s): Finishing up stopAllUserCreatedTasks routine",__FILE__);
+	writeDebugStreamLine("(%s,%d): Finishing up stopAllUserCreatedTasks routine",__FILE__,__LINE__);
 }

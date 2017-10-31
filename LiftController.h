@@ -21,7 +21,7 @@ const int rightLiftPowerUp = 74;
 const int rightLiftPowerDown = -32;
 
 task liftController(){
-	writeDebugStreamLine("(%s): Entering liftController task ",__FILE__);
+	writeDebugStreamLine("(%s,%d): Entering liftController task ",__FILE__,__LINE__);
 	while(true){
 		if(vexRT[Btn5U]){
 			motor[port4] = -1 * leftLiftPowerUp;
