@@ -17,7 +17,7 @@
 
 const int leftLiftPowerUp = 64;
 const int leftLiftPowerDown = -32;
-const int rightLiftPowerUp = 74;
+const int rightLiftPowerUp = 64;
 const int rightLiftPowerDown = -32;
 
 task liftController(){

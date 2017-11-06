@@ -36,10 +36,6 @@ task swivelPidController(){
 	int lastError = -1;
 	int totalError = 0;
 
-	clearLCDLine(0);
-	clearLCDLine(1);
-	displayLCDString(0,1,"P  I  D  ?");
-
 	while(true){
 		if(vexRT[Btn8U]){
 			requestedValue = -1;

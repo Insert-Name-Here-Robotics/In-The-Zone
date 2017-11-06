@@ -21,8 +21,12 @@ void doDebug(){
 	writeDebugStreamLine("(%s,%d): Entering doDebug routine",__FILE__,__LINE__);
 	startTask(swivelPidController);
 	startTask(driveTrainController);
+	clearLCDLine(0);
+	clearLCDLine(1);
 	while(true){
-		writeDebugStreamLine("(%s,%d): %d, %d, %d",__FILE__,__LINE__,_getCurrentSwivelValue(),SensorValue[in1],SensorValue[in2]);
+		writeDebugStreamLine("(%s,%d): %d, %d",__FILE__,__LINE__,SensorValue[in1],SensorValue[in2]);
+		displayLCDNumber(1,1,10000+_getCurrentSwivelValue());
 		sleep(100);
+
 	}
 }

@@ -34,7 +34,7 @@
 
 //Set debug variable - CHANGE BEFORE COMPETITION
 #define AT_COMPETITION false
-const bool DEBUG = true;
+const bool DEBUG = false;
 #warn "Don't forget to turn off DEBUG"
 
 //Main competition background code...do not modify!
