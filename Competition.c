@@ -27,6 +27,16 @@
 // Select Download method as "competition"
 #pragma competitionControl(Competition)
 
+// Launch Debugger windows
+#pragma DebuggerWindows("vexCompetitionControl")
+#pragma DebuggerWindows("debugStream")
+#pragma DebuggerWindows("vexLCD")
+
+//Set debug variable - CHANGE BEFORE COMPETITION
+#define AT_COMPETITION false
+const bool DEBUG = false;
+#warn "Don't forget to turn off DEBUG"
+
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
@@ -37,25 +47,30 @@
 #include "Autonomous.h"
 
 //Programmer Skills include
-#include "ProgrammerSkills.h"
+#include "ProgrammerSkills.h";
 
 //Debug include
 #include "Debug.h"
 
-#define DEBUG 1
+//Util include
+#include "Util.h"
+
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
 /*                                                                           */
 /*  You may want to perform some actions before the competition starts.      */
 /*  Do them in the following function.  You must return from this function   */
-/*  or the autonomous and usercontrol tasks will not be started.  This       */
+/*  or the autonomous a nd usercontrol tasks will not be started.  This      */
 /*  function is only called once after the cortex has been powered on and    */
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
 
 void pre_auton()
 {
+	clearDebugStream();
+	writeDebugStreamLine("(%s,%d): Entering pre_auton task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s,%d): Battery level at %1.2fV ",__FILE__,__LINE__,nImmediateBatteryLevel/1000.0);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
   // manage all user created tasks if set to false.
@@ -64,10 +79,11 @@ void pre_auton()
 	// Set bDisplayCompetitionStatusOnLcd to false if you don't want the LCD
 	// used by the competition include file, for example, you might want
 	// to display your team name on the LCD in this function.
-	// bDisplayCompetitionStatusOnLcd = false;
+	bDisplayCompetitionStatusOnLcd = true;
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
+	writeDebugStreamLine("(%s,%d): Exiting pre_auton task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -82,17 +98,20 @@ void pre_auton()
 
 task autonomous()
 {
-	if(SensorValue[dgtl1])
+	writeDebugStreamLine("(%s,%d): Entering autonomous task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	stopAllUserCreatedTasks();
+	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	if(SensorValue[dgtl1]){
+		writeDebugStreamLine("(%s,%d): Running doProgrammerSkills routine",__FILE__,__LINE__);
 		doProgrammerSkills();
-	else
+		writeDebugStreamLine("(%s,%d): Done running doProgrammerSkills routine",__FILE__,__LINE__);
+	}else{
+		writeDebugStreamLine("(%s,%d): Running doAutonomous routine",__FILE__,__LINE__);
 		doAutonomous();
-
-  // ..........................................................................
-  // Insert user code here.
-  // ..........................................................................
-
-  // Remove this function call once you have "real" code.
-  AutonomousCodePlaceholderForTesting();
+		writeDebugStreamLine("(%s,%d): Done running doAutonomous routine",__FILE__,__LINE__);
+	}
+	writeDebugStreamLine("(%s,%d): Exiting autonomous task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -107,8 +126,18 @@ task autonomous()
 
 task usercontrol()
 {
-	#ifdef DEBUG
+	writeDebugStreamLine("(%s,%d): Entering usercontrol task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	stopAllUserCreatedTasks();
+	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	if(DEBUG&&!AT_COMPETITION){
+		writeDebugStreamLine("(%s,%d): Running doDebug routine ",__FILE__,__LINE__);
 		doDebug();
-	#endif //DEBIF
-	doDriverControl();
+		writeDebugStreamLine("(%s,%d): Done running doDebug routine ",__FILE__,__LINE__);
+	}else{
+		writeDebugStreamLine("(%s,%d): Running doDriverControl routine ",__FILE__,__LINE__);
+		doDriverControl();
+		writeDebugStreamLine("(%s,%d): Done running doDriverControl routine ",__FILE__,__LINE__);
+	}
+	writeDebugStreamLine("(%s,%d): Exiting usercontrol task ",__FILE__,__LINE__);
 }
