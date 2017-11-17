@@ -99,9 +99,11 @@ void pre_auton()
 task autonomous()
 {
 	writeDebugStreamLine("(%s,%d): Entering autonomous task ",__FILE__,__LINE__);
+	/*
 	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	stopAllUserCreatedTasks();
 	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	*/
 	if(SensorValue[dgtl1]){
 		writeDebugStreamLine("(%s,%d): Running doProgrammerSkills routine",__FILE__,__LINE__);
 		doProgrammerSkills();
@@ -127,9 +129,11 @@ task autonomous()
 task usercontrol()
 {
 	writeDebugStreamLine("(%s,%d): Entering usercontrol task ",__FILE__,__LINE__);
+	/*
 	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	stopAllUserCreatedTasks();
 	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
+	*/
 	if(DEBUG&&!AT_COMPETITION){
 		writeDebugStreamLine("(%s,%d): Running doDebug routine ",__FILE__,__LINE__);
 		doDebug();
