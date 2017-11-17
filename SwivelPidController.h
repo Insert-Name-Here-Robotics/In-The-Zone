@@ -57,7 +57,6 @@ task swivelPidController(){
 		}
 
 		if(requestedValue != -1){
-			writeDebugStreamLine("Uh oh! Shouldn't be here");
 			int currentValue = getCurrentSwivelValue();
 			int error = requestedValue - currentValue;
 			totalError += error;
