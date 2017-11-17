@@ -31,7 +31,7 @@ task record(){
 	clearDebugStream();
 	int a=0;
 	while(!vexRT[Btn7R]){}
-	writeDebugStreamLine("const int f_joy[][] = {");
+	writeDebugStreamLine("static const byte f_joy[750][16] = {");
 	while(a<749){
 	  writeDebugStreamLine(" {%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d},",vexRT[Ch1],vexRT[Ch2],vexRT[Ch3],vexRT[Ch4],vexRT[Btn5U],vexRT[Btn5D],vexRT[Btn6U],vexRT[Btn6D],vexRT[Btn7U],vexRT[Btn7D],vexRT[Btn7L],vexRT[Btn7R],vexRT[Btn8U],vexRT[Btn8D],vexRT[Btn8L],vexRT[Btn8R]);
 		a++;

@@ -33,9 +33,12 @@
 #pragma DebuggerWindows("vexLCD")
 
 //Set debug variable - CHANGE BEFORE COMPETITION
-#define AT_COMPETITION false
-const bool DEBUG = false;
+//const bool DEBUG = false;
+#define DEBUG 0
+
+#if DEBUG
 #warn "Don't forget to turn off DEBUG"
+#endif
 
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
@@ -134,7 +137,7 @@ task usercontrol()
 	stopAllUserCreatedTasks();
 	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
 	*/
-	if(DEBUG&&!AT_COMPETITION){
+	if(DEBUG){
 		writeDebugStreamLine("(%s,%d): Running doDebug routine ",__FILE__,__LINE__);
 		doDebug();
 		writeDebugStreamLine("(%s,%d): Done running doDebug routine ",__FILE__,__LINE__);
