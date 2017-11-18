@@ -27,6 +27,5 @@ void doDebug(){
 		writeDebugStreamLine("(%s,%d): %d, %d",__FILE__,__LINE__,SensorValue[in1],SensorValue[in2]);
 		displayLCDNumber(1,1,10000+_getCurrentSwivelValue());
 		sleep(100);
-
 	}
 }
