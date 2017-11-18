@@ -20,20 +20,14 @@
 #include "ReplayReader.h"
 
 //Replay controller includes
-#include "DriveTrainReplay.h"
-#include "LiftReplay.h"
-#include "ClawReplay.h"
-#include "RackReplay.h"
-#include "SwivelPidReplay.h"
+#include "CombinedReplay.h"
+//#include "SwivelPidReplay.h"
 
 void doAutonomous(){
 	writeDebugStreamLine("(%s,%d): Entering doAutonomous routine",__FILE__,__LINE__);
 	startTask(ReplayReader);
-	startTask(driveTrainReplay);
-	startTask(liftReplay);
-	startTask(clawReplay);
-	startTask(rackReplay);
-	startTask(swivelPidReplay);
+	startTask(combinedReplay);
+	//startTask(swivelPidReplay);
 	writeDebugStreamLine("(%s,%d): Finishing doAutonomous routine, entering infinite sleep",__FILE__,__LINE__);
 	while(true){
 		sleep(1000);

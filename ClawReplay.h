@@ -18,13 +18,6 @@
 task clawReplay(){
 	writeDebugStreamLine("(%s,%d): Entering clawReplay task ",__FILE__,__LINE__);
 	while(true){
-		if(b6u){
-			motor[port8] = clawPowerOpen;
-		}else if(b6d){
-			motor[port8] = clawPowerClosed;
-		}else{
-			motor[port8] = 0;
-		}
-		sleep(25);
+
 	}
 }

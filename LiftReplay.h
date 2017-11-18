@@ -18,22 +18,7 @@
 task liftReplay(){
 	writeDebugStreamLine("(%s,%d): Entering liftReplay task ",__FILE__,__LINE__);
 	while(true){
-		if(b5u){
-			motor[port4] = -1 * leftLiftPowerUp;
-			motor[port5] = -1 * leftLiftPowerUp;
-			motor[port6] = rightLiftPowerUp;
-			motor[port7] = rightLiftPowerUp;
-		}else if(b5d){
-			motor[port4] = -1 * leftLiftPowerDown;
-			motor[port5] = -1 * leftLiftPowerDown;
-			motor[port6] = rightLiftPowerDown;
-			motor[port7] = rightLiftPowerDown;
-		}else{
-			motor[port4] = 0;
-			motor[port5] = 0;
-			motor[port6] = 0;
-			motor[port7] = 0;
-		}
+
 		sleep(25);
 	}
 }

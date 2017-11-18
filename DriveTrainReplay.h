@@ -18,8 +18,7 @@
 task driveTrainReplay(){
 	writeDebugStreamLine("(%s,%d): Entering driveTrainReplay task ",__FILE__,__LINE__);
 	while(true){
-		motor[port1] = /*deadbandDrive*/(bch3 + bch4);
-		motor[port10] = -1*/*deadbandDrive*/(bch3 - bch4);
+
 		sleep(25);
 	}
 }
