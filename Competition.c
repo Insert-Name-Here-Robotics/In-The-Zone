@@ -3,6 +3,8 @@
 #pragma config(Sensor, in3,    ,               sensorPotentiometer)
 #pragma config(Sensor, in4,    ,               sensorPotentiometer)
 #pragma config(Sensor, dgtl1,  ,               sensorDigitalIn)
+#pragma config(Sensor, dgtl2,  ,               sensorDigitalIn)
+#pragma config(Sensor, dgtl3,  ,               sensorDigitalIn)
 #pragma config(Motor,  port1,            ,             tmotorVex393_HBridge, openLoop, driveLeft)
 #pragma config(Motor,  port2,            ,             tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,            ,             tmotorVex393_MC29, openLoop)
@@ -43,6 +45,15 @@
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
 
+//Pin reading
+#include "PinReading.h"
+
+//Remote/Replay reading
+#include "ReplayReader.h"
+
+//Controller
+#include "CombinedReplay.h";
+
 //Driver control include
 #include "DriverControl.h"
 
@@ -51,9 +62,6 @@
 
 //Programmer Skills include
 #include "ProgrammerSkills.h";
-
-//Debug include
-#include "Debug.h"
 
 
 /*---------------------------------------------------------------------------*/
@@ -99,21 +107,13 @@ void pre_auton()
 task autonomous()
 {
 	writeDebugStreamLine("(%s,%d): Entering autonomous task ",__FILE__,__LINE__);
-	/*
-	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	*/
 	if(SensorValue[dgtl1]){
 		writeDebugStreamLine("(%s,%d): Running doProgrammerSkills routine",__FILE__,__LINE__);
 		doProgrammerSkills();
-		writeDebugStreamLine("(%s,%d): Done running doProgrammerSkills routine",__FILE__,__LINE__);
 	}else{
 		writeDebugStreamLine("(%s,%d): Running doAutonomous routine",__FILE__,__LINE__);
 		doAutonomous();
-		writeDebugStreamLine("(%s,%d): Done running doAutonomous routine",__FILE__,__LINE__);
 	}
-	writeDebugStreamLine("(%s,%d): Exiting autonomous task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -129,19 +129,9 @@ task autonomous()
 task usercontrol()
 {
 	writeDebugStreamLine("(%s,%d): Entering usercontrol task ",__FILE__,__LINE__);
-	/*
-	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	*/
-	if(DEBUG){
-		writeDebugStreamLine("(%s,%d): Running doDebug routine ",__FILE__,__LINE__);
-		doDebug();
-		writeDebugStreamLine("(%s,%d): Done running doDebug routine ",__FILE__,__LINE__);
+	if(pinRecording()){
+		doRecording();
 	}else{
-		writeDebugStreamLine("(%s,%d): Running doDriverControl routine ",__FILE__,__LINE__);
 		doDriverControl();
-		writeDebugStreamLine("(%s,%d): Done running doDriverControl routine ",__FILE__,__LINE__);
 	}
-	writeDebugStreamLine("(%s,%d): Exiting usercontrol task ",__FILE__,__LINE__);
 }
