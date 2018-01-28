@@ -54,15 +54,6 @@
 //Controller
 #include "CombinedReplay.h";
 
-//Driver control include
-#include "DriverControl.h"
-
-//Autonomous include
-#include "Autonomous.h"
-
-//Programmer Skills include
-#include "ProgrammerSkills.h";
-
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
@@ -77,7 +68,6 @@
 void pre_auton()
 {
 	clearDebugStream();
-	writeDebugStreamLine("(%s,%d): Entering pre_auton task ",__FILE__,__LINE__);
 	writeDebugStreamLine("(%s,%d): Battery level at %1.2fV ",__FILE__,__LINE__,nImmediateBatteryLevel/1000.0);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
@@ -91,7 +81,6 @@ void pre_auton()
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-	writeDebugStreamLine("(%s,%d): Exiting pre_auton task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -106,13 +95,13 @@ void pre_auton()
 
 task autonomous()
 {
-	writeDebugStreamLine("(%s,%d): Entering autonomous task ",__FILE__,__LINE__);
-	if(SensorValue[dgtl1]){
-		writeDebugStreamLine("(%s,%d): Running doProgrammerSkills routine",__FILE__,__LINE__);
-		doProgrammerSkills();
-	}else{
-		writeDebugStreamLine("(%s,%d): Running doAutonomous routine",__FILE__,__LINE__);
-		doAutonomous();
+	writeDebugStreamLine("(%s,%d): Entering doAutonomous routine",__FILE__,__LINE__);
+	if(!pinNoReplay()){
+		startTask(ReplayReader);
+		startTask(combinedReplay);
+		while(true){
+			sleep(1000);
+		}
 	}
 }
 
@@ -132,6 +121,10 @@ task usercontrol()
 	if(pinRecording()){
 		doRecording();
 	}else{
-		doDriverControl();
+		startTask(ReplayReader);
+		startTask(combinedReplay);
+		while(true){
+			sleep(1000);
+		}
 	}
 }

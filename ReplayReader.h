@@ -40,13 +40,14 @@ byte b8r = 0;
 task ReplayReader(){
 	writeDebugStreamLine("(%s,%d): Entering ReplayReader task ",__FILE__,__LINE__);
 	int a = 0;
-	if(!pinProgrammingSkills()){
+	if(pinRunAutonomous()){
+		int modifier = pinReverseAutonomousChModifier();
 		while(true){
 			if(bIfiAutonomousMode && a < 750){
-				bch1 = f_auton_ch[a][_f_ch1];
+				bch1 = f_auton_ch[a][_f_ch1] * modifier;
 				bch2 = f_auton_ch[a][_f_ch2];
 				bch3 = f_auton_ch[a][_f_ch3];
-				bch4 = f_auton_ch[a][_f_ch4];
+				bch4 = f_auton_ch[a][_f_ch4] * modifier;
 				b5u = f_auton_btn[a][_f_b5u];
 				b5d = f_auton_btn[a][_f_b5d];
 				b6u = f_auton_btn[a][_f_b6u];
@@ -82,7 +83,7 @@ task ReplayReader(){
 				sleep(10);
 			}
 		}
-	}else{
+	}else if(pinRunProgrammingSkills()){
 		while(a < 3000){
 			bch1 = f_prog_ch[a][_f_ch1];
 			bch2 = f_prog_ch[a][_f_ch2];

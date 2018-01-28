@@ -1,16 +1,6 @@
-
 #pragma DebuggerWindows("debugStream")
 
-#define DEBUG 0
-
-//Controller includes
-#include "DriveTrainController.h"
-#include "LiftController.h"
-#include "ClawController.h"
-#include "RackController.h"
-#include "SwivelPidController.h"
-
-/*const int f_ch1 = 0;
+const int f_ch1 = 0;
 const int f_ch2 = 1;
 const int f_ch3 = 2;
 const int f_ch4 = 3;
@@ -27,7 +17,7 @@ const int f_b8d = 13;
 const int f_b8l = 14;
 const int f_b8r = 15;*/
 
-task record(){
+/*task record(){
 	clearDebugStream();
 	int a=0;
 	while(!vexRT[Btn7R]){}
@@ -39,9 +29,9 @@ task record(){
 	 }
 	writeDebugStreamLine(" {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}");
 	writeDebugStreamLine("};");
-}
+}*/
 
-/*task record(){
+task record(){
 	clearDebugStream();
 	short f_joy [750][16];
 	int a=0;
@@ -72,9 +62,9 @@ task record(){
 	  writeDebugStreamLine("{%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d},",f_joy[a][f_ch1],f_joy[a][f_ch2],f_joy[a][f_ch3],f_joy[a][f_ch4],f_joy[a][f_b5u],f_joy[a][f_b5d],f_joy[a][f_b6u],f_joy[a][f_b6d],f_joy[a][f_b7u],f_joy[a][f_b7d],f_joy[a][f_b7l],f_joy[a][f_b7r],f_joy[a][f_b8u],f_joy[a][f_b8d],f_joy[a][f_b8l],f_joy[a][f_b8r]);
 	}
 	writeDebugStreamLine("{%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d}};",f_joy[749][f_ch1],f_joy[749][f_ch2],f_joy[749][f_ch3],f_joy[749][f_ch4],f_joy[749][f_b5u],f_joy[749][f_b5d],f_joy[749][f_b6u],f_joy[749][f_b6d],f_joy[749][f_b7u],f_joy[749][f_b7d],f_joy[749][f_b7l],f_joy[749][f_b7r],f_joy[749][f_b8u],f_joy[749][f_b8d],f_joy[749][f_b8l],f_joy[749][f_b8r]);
-}*/
+}
 
-task main(){
+/*task main(){
 	//writeDebugStreamLine("(%s,%d): Entering main (ReplayRecorder) task",__FILE__,__LINE__);
 	startTask(driveTrainController);
 	startTask(liftController);
@@ -89,4 +79,4 @@ task main(){
 		sleep(1000);
 	}
 	//writeDebugStreamLine("(%s,%d): Exiting main (ReplayRecorder) task ",__FILE__,__LINE__);
-}
+}*/
