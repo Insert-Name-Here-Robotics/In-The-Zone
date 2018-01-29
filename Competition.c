@@ -32,11 +32,13 @@
 // Launch Debugger windows
 #pragma DebuggerWindows("vexCompetitionControl")
 #pragma DebuggerWindows("debugStream")
-#pragma DebuggerWindows("vexLCD")
+//#pragma DebuggerWindows("vexLCD")
 
 //Set debug variable - CHANGE BEFORE COMPETITION
 //const bool DEBUG = false;
 #define DEBUG 0
+#define COMPILE_PROGRAMMING_SKILLS 0
+
 
 #if DEBUG
 #warn "Don't forget to turn off DEBUG"
@@ -54,6 +56,8 @@
 //Controller
 #include "CombinedReplay.h";
 
+//Recording
+#include "Recording.h";
 
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
