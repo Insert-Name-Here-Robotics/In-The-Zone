@@ -22,12 +22,13 @@ const int _f_b8r = 11;*/
 
 const int _f_ch3 = 0;
 const int _f_ch4 = 1;
-const int _f_b5u = 0;
-const int _f_b5d = 1;
-const int _f_b6u = 2;
-const int _f_b6d = 3;
-const int _f_b8u = 4;
-const int _f_b8d = 5;
+const int _f_btn = 2;
+const byte _mask_b5u = 1;
+const byte _mask_b5d = 2;
+const byte _mask_b6u = 4;
+const byte _mask_b6d = 8;
+const byte _mask_b8u = 16;
+const byte _mask_b8d = 32;
 
 byte _bch1 = 0;
 byte _bch2 = 0;
@@ -57,16 +58,16 @@ task ReplayReader(){
 				//bch2 = f_auton_ch[a][_f_ch2];
 				bch3 = f_auton_ch[a][_f_ch3];
 				bch4 = f_auton_ch[a][_f_ch4] * modifier;
-				b5u = f_auton_btn[a][_f_b5u];
-				b5d = f_auton_btn[a][_f_b5d];
-				b6u = f_auton_btn[a][_f_b6u];
-				b6d = f_auton_btn[a][_f_b6d];
+				b5u = (bool) (f_auton_ch[a][_f_btn] & _mask_b5u);
+				b5d = (bool) (f_auton_ch[a][_f_btn] & _mask_b5d);
+				b6u = (bool) (f_auton_ch[a][_f_btn] & _mask_b6u);
+				b6d = (bool) (f_auton_ch[a][_f_btn] & _mask_b6d);
 				//b7u = f_auton_btn[a][_f_b7u];
 				//b7d = f_auton_btn[a][_f_b7d];
 				//b7l = f_auton_btn[a][_f_b7l];
 				//b7r = f_auton_btn[a][_f_b7r];
-				b8u = f_auton_btn[a][_f_b8u];
-				b8d = f_auton_btn[a][_f_b8d];
+				b8u = (bool) (f_auton_ch[a][_f_btn] & _mask_b8u);
+				b8d = (bool) (f_auton_ch[a][_f_btn] & _mask_b8d);
 				//b8l = f_auton_btn[a][_f_b8l];
 				//b8r = f_auton_btn[a][_f_b8r];
 				a++;
@@ -94,22 +95,14 @@ task ReplayReader(){
 		}
 	}else if(pinRunProgrammingSkills()){
 		while(a < 3000){
-			//bch1 = f_prog_ch[a][_f_ch1];
-			//bch2 = f_prog_ch[a][_f_ch2];
 			bch3 = f_prog_ch[a][_f_ch3];
 			bch4 = f_prog_ch[a][_f_ch4];
-			b5u = f_prog_btn[a][_f_b5u];
-			b5d = f_prog_btn[a][_f_b5d];
-			b6u = f_prog_btn[a][_f_b6u];
-			b6d = f_prog_btn[a][_f_b6d];
-			//b7u = f_prog_btn[a][_f_b7u];
-			//b7d = f_prog_btn[a][_f_b7d];
-			//b7l = f_prog_btn[a][_f_b7l];
-			//b7r = f_prog_btn[a][_f_b7r];
-			b8u = f_prog_btn[a][_f_b8u];
-			b8d = f_prog_btn[a][_f_b8d];
-			//b8l = f_prog_btn[a][_f_b8l];
-			//b8r = f_prog_btn[a][_f_b8r];
+			b5u = (bool) (f_prog_ch[a][_f_btn] & _mask_b5u);
+			b5d = (bool) (f_prog_ch[a][_f_btn] & _mask_b5d);
+			b6u = (bool) (f_prog_ch[a][_f_btn] & _mask_b6u);
+			b6d = (bool) (f_prog_ch[a][_f_btn] & _mask_b6d);
+			b8u = (bool) (f_prog_ch[a][_f_btn] & _mask_b8u);
+			b8d = (bool) (f_prog_ch[a][_f_btn] & _mask_b8d);
 			a++;
 			sleep(20);
 		}
