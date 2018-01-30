@@ -22,6 +22,7 @@ void recordProgrammingSkills(){
 			btn |= _mask_b8d;
 		writeDebugStreamLine(" {%d,%d,%d},", c3, c4, btn);
 		a++;
+		sleep(20);
 	}
 	writeDebugStreamLine(" {0,0,0}\n};");
 }
@@ -49,6 +50,7 @@ void recordAutonomous(){
 			btn |= _mask_b8d;
 		writeDebugStreamLine(" {%d,%d,%d},", c3, c4, btn);
 		a++;
+		sleep(20);
 	}
 	writeDebugStreamLine(" {0,0,0}\n};");
 }
