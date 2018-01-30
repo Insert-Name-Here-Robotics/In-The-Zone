@@ -2,24 +2,6 @@
 #include "AutonomousReplayData.h";
 #include "ProgrammingReplayData.h";
 
-
-/*const int _f_ch1 = 0;
-const int _f_ch2 = 1;
-const int _f_ch3 = 2;
-const int _f_ch4 = 3;
-const int _f_b5u = 0;
-const int _f_b5d = 1;
-const int _f_b6u = 2;
-const int _f_b6d = 3;
-const int _f_b7u = 4;
-const int _f_b7d = 5;
-const int _f_b7l = 6;
-const int _f_b7r = 7;
-const int _f_b8u = 8;
-const int _f_b8d = 9;
-const int _f_b8l = 10;
-const int _f_b8r = 11;*/
-
 const int _f_ch3 = 0;
 const int _f_ch4 = 1;
 const int _f_btn = 2;
