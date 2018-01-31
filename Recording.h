@@ -2,25 +2,29 @@
 void recordProgrammingSkills(){
 	writeDebugStreamLine("static const byte f_prog_ch [3000][3] = {");
 	int a = 0;
-	while(!vexRT[Btn7R]){}
-	while(vexRT[Btn7R]){}
 	while(a<2499){
-		byte c3 = vexRT[Ch3];
-		byte c4 = vexRT[Ch4];
+		bch3 = vexRT[Ch3];
+		bch4 = vexRT[Ch4];
+		b5u = (bool) vexRT[Btn5U];
+		b5d = (bool) vexRT[Btn5D];
+		b6u = (bool) vexRT[Btn6U];
+		b6d = (bool) vexRT[Btn6D];
+		b8u = (bool) vexRT[Btn8U];
+		b8d = (bool) vexRT[Btn8D];
 		byte btn = 0;
-		if(vexRT[Btn5U])
+		if(b5u)
 			btn |= _mask_b5u;
-		if(vexRT[Btn5D])
+		if(b5d)
 			btn |= _mask_b5d;
-		if(vexRT[Btn6U])
+		if(b6u)
 			btn |= _mask_b6u;
-		if(vexRT[Btn6D])
+		if(b6d)
 			btn |= _mask_b6d;
-		if(vexRT[Btn8U])
+		if(b8u)
 			btn |= _mask_b8u;
-		if(vexRT[Btn8D])
+		if(b8d)
 			btn |= _mask_b8d;
-		writeDebugStreamLine(" {%d,%d,%d},", c3, c4, btn);
+		writeDebugStreamLine(" {%d,%d,%d},", bch3, bch4, btn);
 		a++;
 		sleep(20);
 	}
@@ -30,25 +34,29 @@ void recordProgrammingSkills(){
 void recordAutonomous(){
 	writeDebugStreamLine("static const byte f_auton_ch [750][3] = {");
 	int a = 0;
-	while(!vexRT[Btn7R]){}
-	while(vexRT[Btn7R]){}
 	while(a<749){
-		byte c3 = vexRT[Ch3];
-		byte c4 = vexRT[Ch4];
+		bch3 = vexRT[Ch3];
+		bch4 = vexRT[Ch4];
+		b5u = (bool) vexRT[Btn5U];
+		b5d = (bool) vexRT[Btn5D];
+		b6u = (bool) vexRT[Btn6U];
+		b6d = (bool) vexRT[Btn6D];
+		b8u = (bool) vexRT[Btn8U];
+		b8d = (bool) vexRT[Btn8D];
 		byte btn = 0;
-		if(vexRT[Btn5U])
+		if(b5u)
 			btn |= _mask_b5u;
-		if(vexRT[Btn5D])
+		if(b5d)
 			btn |= _mask_b5d;
-		if(vexRT[Btn6U])
+		if(b6u)
 			btn |= _mask_b6u;
-		if(vexRT[Btn6D])
+		if(b6d)
 			btn |= _mask_b6d;
-		if(vexRT[Btn8U])
+		if(b8u)
 			btn |= _mask_b8u;
-		if(vexRT[Btn8D])
+		if(b8d)
 			btn |= _mask_b8d;
-		writeDebugStreamLine(" {%d,%d,%d},", c3, c4, btn);
+		writeDebugStreamLine(" {%d,%d,%d},", bch3, bch4, btn);
 		a++;
 		sleep(20);
 	}
@@ -57,9 +65,13 @@ void recordAutonomous(){
 
 void doRecording(){
 	clearDebugStream();
+	while(!vexRT[Btn7R]){}
+	while(vexRT[Btn7R]){}
+	startTask(combinedReplay);
 	if(pinRecordProgrammingSkills()){
 		recordProgrammingSkills();
 	}else{
 		recordAutonomous();
 	}
+	stopTask(combinedReplay);
 }
