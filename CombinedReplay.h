@@ -5,20 +5,22 @@
 //Constants
 const int rackPowerUp = -64;
 const int rackPowerDown = 64;
-const int clawPowerOpen = 64;
-const int clawPowerClosed = -30;
+//const int clawPowerOpen = 64;
+//const int clawPowerClosed = -30;
 
-const int leftLiftPowerUp = 64;
-const int leftLiftPowerDown = -32;
-const int rightLiftPowerUp = 64;
-const int rightLiftPowerDown = -32;
+//const int leftLiftPowerUp = 64;
+//const int leftLiftPowerDown = -32;
+//const int rightLiftPowerUp = 64;
+//const int rightLiftPowerDown = -32;
 
 
 task combinedReplay(){
 	writeDebugStreamLine("(%s,%d): Entering rackReplay task ",__FILE__,__LINE__);
 	while(true){
-		motor[port1] = /*deadbandDrive*/(bch3 + bch4);
-		motor[port10] = -1*/*deadbandDrive*/(bch3 - bch4);
+		motor[port3] = bch3 + bch4;
+		motor[port4] = bch3 + bch4;
+		motor[port7] = -1*(bch3 - bch4);
+		motor[port8] = -1*(bch3 - bch4);
 		if(b8u){
 			motor[port2] = -1 * rackPowerUp;
 			motor[port9] = rackPowerUp;
@@ -29,6 +31,7 @@ task combinedReplay(){
 			motor[port2] = 0;
 			motor[port9] = 0;
 		}
+		/*
 		if(b6u){
 			motor[port8] = clawPowerOpen;
 		}else if(b6d){
@@ -52,6 +55,7 @@ task combinedReplay(){
 			motor[port6] = 0;
 			motor[port7] = 0;
 		}
+		*/
 		sleep(25);
 	}
 }
