@@ -20,8 +20,10 @@
 task driveTrainController(){
 	writeDebugStreamLine("(%s,%d): Entering driveTrainController task ",__FILE__,__LINE__);
 	while(true){
-		motor[port1] = /*deadbandDrive*/(vexRT[Ch3] + vexRT[Ch4]);
-		motor[port10] = -1*/*deadbandDrive*/(vexRT[Ch3] - vexRT[Ch4]);
+		motor[port3] = /*deadbandDrive*/(vexRT[Ch3] + vexRT[Ch4]);
+		motor[port4] = /*deadbandDrive*/(vexRT[Ch3] + vexRT[Ch4]);
+		motor[port7] = -1*/*deadbandDrive*/(vexRT[Ch3] - vexRT[Ch4]);
+		motor[port8] = -1*/*deadbandDrive*/(vexRT[Ch3] - vexRT[Ch4]);
 		sleep(25);
 	}
 }
