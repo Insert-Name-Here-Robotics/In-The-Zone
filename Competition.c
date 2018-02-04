@@ -42,20 +42,6 @@
 
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
-
-//Driver control include
-#include "DriverControl.h"
-
-//Autonomous include
-#include "Autonomous.h"
-
-//Programmer Skills include
-#include "ProgrammerSkills.h";
-
-//Debug include
-#include "Debug.h"
-
-
 /*---------------------------------------------------------------------------*/
 /*                          Pre-Autonomous Functions                         */
 /*                                                                           */
@@ -69,7 +55,6 @@
 void pre_auton()
 {
 	clearDebugStream();
-	writeDebugStreamLine("(%s,%d): Entering pre_auton task ",__FILE__,__LINE__);
 	writeDebugStreamLine("(%s,%d): Battery level at %1.2fV ",__FILE__,__LINE__,nImmediateBatteryLevel/1000.0);
   // Set bStopTasksBetweenModes to false if you want to keep user created tasks
   // running between Autonomous and Driver controlled modes. You will need to
@@ -83,7 +68,6 @@ void pre_auton()
 
   // All activities that occur before the competition starts
   // Example: clearing encoders, setting servo positions, ...
-	writeDebugStreamLine("(%s,%d): Exiting pre_auton task ",__FILE__,__LINE__);
 }
 
 /*---------------------------------------------------------------------------*/
@@ -98,22 +82,7 @@ void pre_auton()
 
 task autonomous()
 {
-	writeDebugStreamLine("(%s,%d): Entering autonomous task ",__FILE__,__LINE__);
-	/*
-	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	*/
-	if(SensorValue[dgtl1]){
-		writeDebugStreamLine("(%s,%d): Running doProgrammerSkills routine",__FILE__,__LINE__);
-		doProgrammerSkills();
-		writeDebugStreamLine("(%s,%d): Done running doProgrammerSkills routine",__FILE__,__LINE__);
-	}else{
-		writeDebugStreamLine("(%s,%d): Running doAutonomous routine",__FILE__,__LINE__);
-		doAutonomous();
-		writeDebugStreamLine("(%s,%d): Done running doAutonomous routine",__FILE__,__LINE__);
-	}
-	writeDebugStreamLine("(%s,%d): Exiting autonomous task ",__FILE__,__LINE__);
+	//DO NOTHING
 }
 
 /*---------------------------------------------------------------------------*/
@@ -126,22 +95,26 @@ task autonomous()
 /*  You must modify the code to add your own robot specific commands here.   */
 /*---------------------------------------------------------------------------*/
 
+const int mogoPowerUp = -64;
+const int mogoPowerDown = 64;
+
 task usercontrol()
 {
 	writeDebugStreamLine("(%s,%d): Entering usercontrol task ",__FILE__,__LINE__);
-	/*
-	writeDebugStreamLine("(%s,%d): Running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	stopAllUserCreatedTasks();
-	writeDebugStreamLine("(%s,%d): Done running stopAllUserCreatedTasks routine ",__FILE__,__LINE__);
-	*/
-	if(DEBUG){
-		writeDebugStreamLine("(%s,%d): Running doDebug routine ",__FILE__,__LINE__);
-		doDebug();
-		writeDebugStreamLine("(%s,%d): Done running doDebug routine ",__FILE__,__LINE__);
-	}else{
-		writeDebugStreamLine("(%s,%d): Running doDriverControl routine ",__FILE__,__LINE__);
-		doDriverControl();
-		writeDebugStreamLine("(%s,%d): Done running doDriverControl routine ",__FILE__,__LINE__);
+	while(true){
+		motor[port3] = vexRT[Ch3] + vexRT[Ch4];
+		motor[port4] = vexRT[Ch3] + vexRT[Ch4];
+		motor[port7] = -1*(vexRT[Ch3] - vexRT[Ch4]);
+		motor[port8] = -1*(vexRT[Ch3] - vexRT[Ch4]);
+		if(vexRT[Btn6U]){
+			motor[port2] = -1 * mogoPowerUp;
+			motor[port9] = mogoPowerUp;
+		}else if(vexRT[Btn6D]){
+			motor[port2] = -1 * mogoPowerDown;
+			motor[port9] = mogoPowerDown;
+		}else{
+			motor[port2] = 0;
+			motor[port9] = 0;
+		}
 	}
-	writeDebugStreamLine("(%s,%d): Exiting usercontrol task ",__FILE__,__LINE__);
 }
