@@ -15,7 +15,7 @@ const int rackPowerDown = 64;
 
 
 task combinedReplay(){
-	writeDebugStreamLine("(%s,%d): Entering rackReplay task ",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s,%d): Entering combinedReplay task ",__FILE__,__LINE__);
 	while(true){
 		motor[port3] = bch3 + bch4;
 		motor[port4] = bch3 + bch4;
