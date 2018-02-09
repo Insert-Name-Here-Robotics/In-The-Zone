@@ -15,16 +15,16 @@ const int rackPowerDown = 64;
 
 
 task combinedReplay(){
-	writeDebugStreamLine("(%s,%d): Entering combinedReplay task ",__FILE__,__LINE__);
+	//writeDebugStreamLine("(%s,%d): Entering combinedReplay task ",__FILE__,__LINE__);
 	while(true){
 		motor[port3] = bch3 + bch4;
 		motor[port4] = bch3 + bch4;
 		motor[port7] = -1*(bch3 - bch4);
 		motor[port8] = -1*(bch3 - bch4);
-		if(b8u){
+		if(b6u){
 			motor[port2] = -1 * rackPowerUp;
 			motor[port9] = rackPowerUp;
-		}else if(b8d){
+		}else if(b6d){
 			motor[port2] = -1 * rackPowerDown;
 			motor[port9] = rackPowerDown;
 		}else{

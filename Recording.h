@@ -74,4 +74,10 @@ void doRecording(){
 		recordAutonomous();
 	}
 	stopTask(combinedReplay);
+	motor[port2] = 0;
+	motor[port3] = 0;
+	motor[port4] = 0;
+	motor[port7] = 0;
+	motor[port8] = 0;
+	motor[port9] = 0;
 }

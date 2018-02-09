@@ -1,6 +1,12 @@
 //Replay data include
-#include "AutonomousReplayData.h";
-#include "ProgrammingReplayData.h";
+
+#if ZERO_OUT_AUTON
+    #include "AutonomousReplayData_ZERO.h";
+    #include "ProgrammingReplayData_ZERO.h";
+#else
+    #include "AutonomousReplayData.h";
+    #include "ProgrammingReplayData.h";
+#endif
 
 const int _f_ch3 = 0;
 const int _f_ch4 = 1;

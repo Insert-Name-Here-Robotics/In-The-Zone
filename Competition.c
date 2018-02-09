@@ -32,17 +32,27 @@
 // Launch Debugger windows
 #pragma DebuggerWindows("vexCompetitionControl")
 #pragma DebuggerWindows("debugStream")
-//#pragma DebuggerWindows("vexLCD")
+#pragma DebuggerWindows("vexLCD")
 
 //Set debug variable - CHANGE BEFORE COMPETITION
 //const bool DEBUG = false;
 #define DEBUG 0
-#define COMPILE_PROGRAMMING_SKILLS 0
-
 
 #if DEBUG
 #warn "Don't forget to turn off DEBUG"
 #endif
+
+///////////////////////////////////////////////////
+//ZERO OUT ALL AUTONOMOUS AND PROGRAMMING SKILLS://
+//USE WITH GREAT CAUTION!! WILL USE _ZERO FILES..//
+///////////////////////////////////////////////////
+#define ZERO_OUT_AUTON 0
+
+#if ZERO_OUT_AUTON
+#warn "TURN OFF ZERO_OUT_AUTON"
+#endif
+
+
 
 //Main competition background code...do not modify!
 #include "Vex_Competition_Includes.c"
@@ -64,7 +74,7 @@
 /*                                                                           */
 /*  You may want to perform some actions before the competition starts.      */
 /*  Do them in the following function.  You must return from this function   */
-/*  or the autonomous a nd usercontrol tasks will not be started.  This      */
+/*  or the autonomous and usercontrol tasks will not be started.  This       */
 /*  function is only called once after the cortex has been powered on and    */
 /*  not every time that the robot is disabled.                               */
 /*---------------------------------------------------------------------------*/
