@@ -88,5 +88,26 @@ task ReplayReader(){
 			a++;
 			sleep(20);
 		}
+	}else if(!bIfiAutonomousMode){
+		while(true){
+			_bch1 = vexRT[Ch1];
+			_bch2 = vexRT[Ch2];
+			bch3 = vexRT[Ch3];
+			bch4 = vexRT[Ch4];
+			b5u = (bool) vexRT[Btn5U];
+			b5d = (bool) vexRT[Btn5D];
+			b6u = (bool) vexRT[Btn6U];
+			b6d = (bool) vexRT[Btn6D];
+			_b7u = (bool) vexRT[Btn7U];
+			_b7d = (bool) vexRT[Btn7D];
+			_b7l = (bool) vexRT[Btn7L];
+			_b7r = (bool) vexRT[Btn7R];
+			b8u = (bool) vexRT[Btn8U];
+			b8d = (bool) vexRT[Btn8D];
+			_b8l = (bool) vexRT[Btn8L];
+			_b8r = (bool) vexRT[Btn8R];
+			a++;
+			sleep(10);
+		}
 	}
 }

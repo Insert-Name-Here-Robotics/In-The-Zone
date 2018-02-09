@@ -2,9 +2,9 @@
 #pragma config(Sensor, in2,    ,               sensorPotentiometer)
 #pragma config(Sensor, in3,    ,               sensorPotentiometer)
 #pragma config(Sensor, in4,    ,               sensorPotentiometer)
-#pragma config(Sensor, dgtl1,  ,               sensorDigitalIn)
-#pragma config(Sensor, dgtl2,  ,               sensorDigitalIn)
-#pragma config(Sensor, dgtl3,  ,               sensorDigitalIn)
+#pragma config(Sensor, dgtl1,  ,               sensorTouch)
+#pragma config(Sensor, dgtl2,  ,               sensorTouch)
+#pragma config(Sensor, dgtl3,  ,               sensorTouch)
 #pragma config(Motor,  port1,            ,             tmotorVex393_HBridge, openLoop)
 #pragma config(Motor,  port2,            ,             tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,            ,             tmotorVex393_MC29, openLoop, driveLeft)
@@ -99,7 +99,7 @@ void pre_auton()
 
 task autonomous()
 {
-	writeDebugStreamLine("(%s,%d): Entering doAutonomous routine",__FILE__,__LINE__);
+	writeDebugStreamLine("(%s,%d): Entering autonomous task",__FILE__,__LINE__);
 	if(!pinNoReplay()){
 		startTask(ReplayReader);
 		startTask(combinedReplay);
