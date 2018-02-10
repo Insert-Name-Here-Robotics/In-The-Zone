@@ -3,6 +3,7 @@
 #if ZERO_OUT_AUTON
     #include "AutonomousReplayData_ZERO.h";
     #include "ProgrammingReplayData_ZERO.h";
+    #warn "TURN OFF ZERO_OUT_AUTON"
 #else
     #include "AutonomousReplayData.h";
     #include "ProgrammingReplayData.h";
