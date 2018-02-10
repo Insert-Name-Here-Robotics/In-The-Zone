@@ -101,26 +101,32 @@ const int mogoPowerDown = 64;
 task usercontrol()
 {
 	writeDebugStreamLine("(%s,%d): Entering usercontrol task ",__FILE__,__LINE__);
-	bool slowChain = false;
+	srand(123);
 	while(true){
-		float multiplier = vexRT[Btn5U] ? 1: 0.6;
-		float chainModifier = slowChain ? 0.5 : 1.0;
-		motor[port3] = (vexRT[Ch3] + vexRT[Ch4]) * multiplier;
-		motor[port4] = ((vexRT[Ch3] + vexRT[Ch4]) * multiplier) * chainModifier;
-		motor[port7] = -1*(((vexRT[Ch3] - vexRT[Ch4]) * multiplier) * chainModifier);
-		motor[port8] = -1*((vexRT[Ch3] - vexRT[Ch4]) * multiplier);
-		if(vexRT[Btn6U]){
-			motor[port2] = -1 * mogoPowerUp;
-			motor[port9] = mogoPowerUp;
-		}else if(vexRT[Btn6D]){
-			motor[port2] = -1 * mogoPowerDown;
-			motor[port9] = mogoPowerDown;
+		if(!vexRT[Btn5U]){
+			int a = random(254) - 127;
+			int b = random(254) - 127;
+			motor[port3] = a + b;
+			motor[port4] = a + b;
+			motor[port7] = a - b;
+			motor[port8] = a - b;
+			sleep(500);
 		}else{
-			motor[port2] = 0;
-			motor[port9] = 0;
-		}
-		if(vexRT[Btn8R]){
-			 	slowChain = true;
+			int multiplier = vexRT[Btn8R] ? 1 : -1;
+			motor[port3] = (vexRT[Ch3] + vexRT[Ch4]) * multiplier;
+			motor[port4] = (vexRT[Ch3] + vexRT[Ch4]) * multiplier;
+			motor[port7] = -1*((vexRT[Ch3] - vexRT[Ch4]) * multiplier);
+			motor[port8] = -1*((vexRT[Ch3] - vexRT[Ch4]) * multiplier);
+			if(vexRT[Btn6U]){
+				motor[port2] = -1 * mogoPowerUp;
+				motor[port9] = mogoPowerUp;
+			}else if(vexRT[Btn6D]){
+				motor[port2] = -1 * mogoPowerDown;
+				motor[port9] = mogoPowerDown;
+			}else{
+				motor[port2] = 0;
+				motor[port9] = 0;
+			}
 		}
 	}
 }
